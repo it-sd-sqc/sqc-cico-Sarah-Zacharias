@@ -69,3 +69,14 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected result
 * The field should ignore non-numerical input.
+
+# Module 5: User Control and Freedom
+
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field and click Update.
+3. Click the "Next User" button.
+
+## Expected results:
+* The status panel should appear after step 2, showing "Checked IN" or "Checked OUT".
+* Clicking the "Next User" button should end the current session and reset the system for the next user.
