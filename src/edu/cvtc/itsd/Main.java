@@ -111,6 +111,7 @@ public class Main {
   static JLabel labelUser;
   static JLabel labelState;
   static JButton buttonAcknowledge;
+  static JButton buttonNextUser; // New button
 
   // Timer variables //////////////////////////////////////////////////////////
   static java.util.Timer timer;
@@ -212,9 +213,20 @@ public class Main {
     ((CardLayout)deck.getLayout()).show(deck, CARD_MAIN);
     fieldNumber.grabFocus();
   }
+  private static void nextUser() {
+    fieldNumber.setText("");
+    labelUser.setText("Please scan your card");
+    labelState.setText("");
+    ((CardLayout) deck.getLayout()).show(deck, CARD_MAIN);
+    if (timeout != null) {
+      timeout.cancel();
+      timeout = new Timeout();
+      timer.schedule(timeout, TIMEOUT_PANEL_MS);
+    }
+  }
 
   // Display name and new status //////////////////////////////////////////////
-  // Module 3 tickets: Display user name and new status. Doesn't require a
+  // Module 3 tickets: Display username and new status. Doesn't require a
   // method and can be done where this is called instead.
   private static void updateStateLabels(String name, boolean isCheckedInNow) {
     labelUser.setText(name);
@@ -293,6 +305,16 @@ public class Main {
     labelState.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
+    
+    buttonNextUser = new JButton("Next User");
+    buttonNextUser.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    buttonNextUser.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        nextUser();
+      }
+    });
+    panelStatus.add(buttonNextUser);
 
     panelStatus.add(Box.createVerticalGlue());
 
