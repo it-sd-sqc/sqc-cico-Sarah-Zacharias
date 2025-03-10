@@ -69,3 +69,17 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected result
 * The field should ignore non-numerical input.
+
+# Module 6: Auto-submit Card Number Test
+
+## Test steps
+1. Build and run CiCo
+2. Type in 8-digit card number (00000000)
+3. Verify submission happens automatically after 8th digit
+4. Verify Update button is no longer present
+
+## Expected results
+* Card number submits automatically when 8 digits are entered
+* No Update button exists in the interface
+* Status screen appears immediately after 8th digit
+* Original timeout functionality still works
