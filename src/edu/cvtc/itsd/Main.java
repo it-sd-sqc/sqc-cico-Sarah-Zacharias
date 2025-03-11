@@ -39,31 +39,29 @@ public class Main {
 
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
-        throws BadLocationException
+            throws BadLocationException
     {
       if (fb.getDocument() != null && stringToAdd != null) {
-            if (stringToAdd.matches("\\d*") && (fb.getDocument().getLength() + stringToAdd.length() <= MAX_LENGTH)) {
-                super.insertString(fb, offset, stringToAdd, attr);
-            } else {
-                Toolkit.getDefaultToolkit().beep();
-            }
-        } else {
-            Toolkit.getDefaultToolkit().beep();
+        if (stringToAdd.matches("\\d*") && (fb.getDocument().getLength() + stringToAdd.length() <= MAX_LENGTH)) {
+          super.insertString(fb, offset, stringToAdd, attr);
+          if (fb.getDocument().getLength() == MAX_LENGTH) {
+            Main.processCard();
+          }
         }
+      }
     }
 
     @Override
-    public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr) 
-        throws BadLocationException {
-        if (fb.getDocument() != null && stringToAdd != null) {
-            if (stringToAdd.matches("\\d*") && (fb.getDocument().getLength() + stringToAdd.length() <= MAX_LENGTH)) {
-                super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
-            } else {
-                Toolkit.getDefaultToolkit().beep();
-            }
-        } else {
-            Toolkit.getDefaultToolkit().beep();
+    public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
+            throws BadLocationException {
+      if (fb.getDocument() != null && stringToAdd != null) {
+        if (stringToAdd.matches("\\d*") && (fb.getDocument().getLength() + stringToAdd.length() <= MAX_LENGTH)) {
+          super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+          if (fb.getDocument().getLength() == MAX_LENGTH) {
+            Main.processCard();
+          }
         }
+      }
     }
 }
 
@@ -264,12 +262,6 @@ public class Main {
     fieldNumber.setBackground(Color.green);
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
-
-    JButton updateButton = new JButton("Update");
-    updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    updateButton.addActionListener(new Update());
-    updateButton.setForeground(Color.green);
-    panelMain.add(updateButton);
 
     panelMain.add(Box.createVerticalGlue());
 
