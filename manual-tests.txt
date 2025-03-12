@@ -70,6 +70,7 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected result
 * The field should ignore non-numerical input.
 
+
 # Module 6: Auto-submit Card Number Test
 
 ## Test steps
@@ -83,3 +84,16 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * No Update button exists in the interface
 * Status screen appears immediately after 8th digit
 * Original timeout functionality still works
+
+
+# Module 5: User Control and Freedom
+
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field and click Update.
+3. Click the "Next User" button.
+
+## Expected results:
+* The status panel should appear after step 2, showing "Checked IN" or "Checked OUT".
+* Clicking the "Next User" button should end the current session and reset the system for the next user.
+
